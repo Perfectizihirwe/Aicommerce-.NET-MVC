@@ -6,8 +6,8 @@ namespace NetFullStack.Services
     {
         Task<IEnumerable<Product>> GetProductsAsync();
 
-        Task AddProductsAsync();
+        void AddProductsAsync(Product product);
 
-        void SaveChangesAsync();
+        Task<bool> SaveChangesAsync();
     }
 }

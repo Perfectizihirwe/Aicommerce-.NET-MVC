@@ -16,14 +16,14 @@ namespace NetFullStack.Services
             return await _aicontext.Products.ToListAsync();
         }
 
-        public async Task AddProductsAsync()
+        public void AddProductsAsync(Product product)
         {
-
+            _aicontext.Products.Add(product);
         }
 
-        public void SaveChangesAsync()
+        public async Task<bool> SaveChangesAsync()
         {
-
+            return (await _aicontext.SaveChangesAsync() >= 0);
         }
     }
 }
