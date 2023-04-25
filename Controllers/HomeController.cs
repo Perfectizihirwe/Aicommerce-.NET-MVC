@@ -1,22 +1,29 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using NetFullStack.Models;
+using AutoMapper;
+using NetFullStack.Entities;
+using NetFullStack.Services;
 
 namespace NetFullStack.Controllers;
 
 public class HomeController : Controller
 {
+    public IAicommerceRepository _repository;
+    public IMapper _mapper;
     private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IAicommerceRepository repository, IMapper mapper, ILogger<HomeController> logger)
     {
-        _logger = logger;
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
-    [Route("/home")]
-    public IActionResult Index()
+    [Route("/")]
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var products = await _repository.GetProductsAsync();
+        return View(_mapper.Map<IEnumerable<ProductDto>>(products));
     }
 
     [Route("/privacy")]
