@@ -1,3 +1,4 @@
+@model IEnumerable<NetFullStack.Models.ProductDto>;
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -63,7 +64,7 @@
       </button>
 
       <!-- Brand -->
-      <a class="navbar-brand" href="/home">
+      <a class="navbar-brand" href="/">
         <img
              src="https://aicommerce.com/wp-content/uploads/2021/09/ai-commerce-transparance-background-white-lettering-with-slogan-e1606171528478-1024x225-1.png"
              height="25"
@@ -159,19 +160,23 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach (var item in Model)
+                {
                 <tr>
-                    <td>1</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
                   <td>
-                    <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="img-fluid" alt="Sheep" width="42" height="42">
+                                            <img src="
+                    @Url.Content(item.Image)" class="img-fluid" alt="Product" width="42" height="42">
                   </td>
-                  <td>Men's hat</td>
-                  <td>Male</td>
-                  <td>40</td>
-                  <td>$13.68</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                  <td>10</td>
+                                        <td>RWF @Html.DisplayFor(modelItem => item.Price)</td>
                     <td>
                         <a href="#" class="btn btn-primary btn-sm">Edit</a>
                         <a href="#" class="btn btn-danger btn-sm">Delete</a>
                 </tr>
+                }
               </tbody>
             </table>
           </div>
