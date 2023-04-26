@@ -29,8 +29,13 @@ namespace NetFullStack.Controllers
 
         [HttpPost]
         [Route("addProduct")]
-        public async Task<ActionResult> AddProduct(ProductDto product)
+        public async Task<ActionResult> AddProduct(string name)
         {
+            var product = new ProductDto()
+            {
+                Name = name
+            };
+            Console.WriteLine(product.Name + "------------------------------------");
             var productEntity = _mapper.Map<Product>(product);
             _repository.AddProductsAsync(productEntity);
             await _repository.SaveChangesAsync();

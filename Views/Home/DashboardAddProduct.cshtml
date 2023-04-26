@@ -141,10 +141,7 @@
             <div class="card-body bg-light">
        
             <div class = "container">
-                             <form id="contact-form" role="form">
-
-            
-
+                        <form asp-controller="Home" asp-action="AddProduct" id="contact-form" role="form">
             <div class="controls">
 
                 <div class="row">
@@ -157,41 +154,36 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="form_lastname">Product Price</label>
-                            <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Please enter the price *" required="required" data-error="Lastname is required.">
+                            <label for="form_price">Product Price</label>
+                            <input id="form_price" type="text" name="price" class="form-control" placeholder="Please enter the price *" required="required" data-error="Price is required.">
                                                             </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="form_email">Email *</label>
-                            <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
-                            
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="form_need">Gender *</label>
-                            <select id="form_need" name="need" class="form-control" required="required" data-error="Please specify your need.">
+                            <label for="form_gender">Gender *</label>
+                            <select id="form_gender" name="gender" class="form-control" required="required" data-error="Please specify the gender.">
                                 <option value="" selected disabled>--Select the product's gender--</option>
                                 <option >Male</option>
                                 <option >Female</option>
                             </select>
-                            
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="form_image">Image *</label>
+                            <input id="form_image" type="text" name="image" class="form-control" placeholder="Please specify image's url *" required="required" data-error="Image is required.">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="form_message">Product Description</label>
-                            <textarea id="form_message" name="message" class="form-control" placeholder="Write the details of the product." rows="4" required="required" data-error="Please, leave us a message."></textarea
-                                >
+                            <label for="form_description">Product Description</label>
+                            <textarea id="form_description" name="description" class="form-control" placeholder="Write the details of the product." rows="4" required="required" data-error="Please, leave us a message."></textarea>
                             </div>
-
                         </div>
-
 
                     <div class="col-md-12 my-3 bg-blue">
                         

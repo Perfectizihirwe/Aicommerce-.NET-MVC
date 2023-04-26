@@ -45,15 +45,26 @@ public class HomeController : Controller
     }
 
     [Route("/dashboard")]
-    public IActionResult Dashboard()
+    public async Task<IActionResult> Dashboard()
     {
-        return View();
+        var products = await _repository.GetProductsAsync();
+        return View(_mapper.Map<IEnumerable<ProductDto>>(products));
     }
 
     [Route("/dashboard/addProduct")]
     public IActionResult DashboardAddProduct()
     {
         return View();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> AddProduct(ProductDto product)
+    {
+        Console.WriteLine(product.Name + "------------------------------------");
+        var productEntity = _mapper.Map<Product>(product);
+        _repository.AddProductsAsync(productEntity);
+        await _repository.SaveChangesAsync();
+        return RedirectToAction("Dashboard");
     }
 
     [Route("/dashboard/orders")]
