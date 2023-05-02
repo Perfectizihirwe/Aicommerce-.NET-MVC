@@ -73,7 +73,7 @@
              />
       </a>
       <!-- Search form -->
-      <form class="d-none d-md-flex input-group w-auto my-auto">
+      @*<form class="d-none d-md-flex input-group w-auto my-auto">
         <input
                autocomplete="off"
                type="search"
@@ -84,7 +84,7 @@
         <span class="input-group-text border-0"
               ><i class="fas fa-search"></i
           ></span>
-      </form>
+      </form>*@
 
       <!-- Right links -->
       <ul class="navbar-nav ms-auto d-flex flex-row">
@@ -173,8 +173,8 @@
                   <td>10</td>
                                         <td>RWF @Html.DisplayFor(modelItem => item.Price)</td>
                     <td>
-                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="/dashboard/editProduct/@item.Id" class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="/delete/@item.Id" class="btn btn-danger btn-sm">Delete</a>
                 </tr>
                 }
               </tbody>

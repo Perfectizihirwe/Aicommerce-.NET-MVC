@@ -32,11 +32,13 @@ public class HomeController : Controller
         return View();
     }
 
-    [Route("/product")]
-    public IActionResult Details()
+    [Route("/product/{id}")]
+    public async Task<IActionResult> Details(int id)
     {
-        return View();
+        var product = await _repository.GetSingleProductsAsync(id);
+        return View(_mapper.Map<ProductDto>(product));
     }
+
 
     [Route("/cart")]
     public IActionResult Cart()
@@ -49,6 +51,28 @@ public class HomeController : Controller
     {
         var products = await _repository.GetProductsAsync();
         return View(_mapper.Map<IEnumerable<ProductDto>>(products));
+    }
+
+
+    [Route("/dashboard/editProduct/{id}")]
+    public async Task<IActionResult> DashboardEditProduct(int id)
+    {
+        var product = await _repository.GetSingleProductsAsync(id);
+        return View(_mapper.Map<ProductDto>(product));
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> EditProduct(ProductDto product)
+    {
+        Console.WriteLine(product.Name + " " + product.Description + product.Id + "------------------------");
+        var productEntity = await _repository.GetSingleProductsAsync(product.Id);
+        if (productEntity == null)
+        {
+            return BadRequest();
+        }
+        _mapper.Map(product, productEntity);
+        await _repository.SaveChangesAsync();
+        return RedirectToAction("Dashboard");
     }
 
     [Route("/dashboard/addProduct")]
@@ -67,6 +91,15 @@ public class HomeController : Controller
         return RedirectToAction("Dashboard");
     }
 
+    [Route("/delete/{id}")]
+    public async Task<IActionResult> DeleteProduct(int id) 
+    {
+
+        await _repository.DeleteProductAsync(id);
+        await _repository.SaveChangesAsync();
+        return RedirectToAction("Dashboard");
+    }
+
     [Route("/dashboard/orders")]
     public IActionResult DashboardOrders()
     {
@@ -78,6 +111,24 @@ public class HomeController : Controller
     {
         return View();
     }
+
+    //[HttpPost]
+    [Route("/search")]
+    public async Task<ActionResult> SearchProducts(string searchKey)
+    {
+        var productsFromSearch = await _repository.SearchProductsAsync(searchKey);
+
+        if (productsFromSearch == null) {
+            return View();
+        }
+        //return RedirectToAction("SearchProducts", "Home" , _mapper.Map<IEnumerable<ProductDto>>(productsFromSearch));
+        return View(_mapper.Map<IEnumerable<ProductDto>>(productsFromSearch));
+
+    }
+
+    //public IActionResult SearchProducts(IEnumerable<ProductDto> products)
+    //{
+    //}
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

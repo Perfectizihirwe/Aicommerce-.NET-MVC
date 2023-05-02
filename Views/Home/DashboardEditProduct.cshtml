@@ -1,3 +1,4 @@
+@model NetFullStack.Models.ProductDto;
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -13,7 +14,7 @@
       <div class="list-group list-group-flush mx-3 mt-4">
         <a
            href="/dashboard"
-           class="list-group-item list-group-item-action py-2 ripple"
+                   class="list-group-item list-group-item-action py-2 ripple active"
            aria-current="true"
            >
           <i class="fas fa-tachometer-alt fa-fw me-3"></i
@@ -21,7 +22,7 @@
         </a>
         <a
            href="/dashboard/addProduct"
-           class="list-group-item list-group-item-action py-2 ripple active"
+           class="list-group-item list-group-item-action py-2 ripple"
            >
           <i class="fas fa-chart-area fa-fw me-3"></i
             ><span>Add Products</span>
@@ -72,7 +73,7 @@
              />
       </a>
       <!-- Search form -->
-     @* <form class="d-none d-md-flex input-group w-auto my-auto">
+      @*<form class="d-none d-md-flex input-group w-auto my-auto">
         <input
                autocomplete="off"
                type="search"
@@ -141,21 +142,26 @@
             <div class="card-body bg-light">
        
             <div class = "container">
-                        <form asp-controller="Home" asp-action="AddProduct" id="contact-form" role="form">
+                        <form asp-controller="Home" method="post" asp-action="EditProduct" id="contact-form" role="form">
             <div class="controls">
 
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="form_name">Product Name</label>
-                            <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter the product name *" required="required" data-error="Firstname is required.">
+                            <input value="@Model.Name" id="form_name" type="text" name="name" class="form-control" placeholder="Please enter the product name *" required="required" data-error="Firstname is required.">
                             
                         </div>
                     </div>
+                                    <div class="d-none">
+                                        <div class="form-group">
+                                            <input value="@Model.Id" id="form_id" type="number" name="id" class="form-control">
+                                        </div>
+                                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="form_price">Product Price</label>
-                            <input id="form_price" type="text" name="price" class="form-control" placeholder="Please enter the price *" required="required" data-error="Price is required.">
+                            <input value="@Model.Price" id="form_price" type="text" name="price" class="form-control" placeholder="Please enter the price *" required="required" data-error="Price is required.">
                                                             </div>
                     </div>
                 </div>
@@ -163,17 +169,17 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="form_gender">Gender *</label>
-                            <select id="form_gender" name="gender" class="form-control" required="required" data-error="Please specify the gender.">
-                                <option value="" selected disabled>--Select the product's gender--</option>
-                                <option >Male</option>
-                                <option >Female</option>
+                                            <select defa="@Model.Gender" id="form_gender" name="gender" class="form-control" required="required" data-error="Please specify the gender.">
+                                <option selected disabled>--Select the product's gender--</option>
+                                                <option selected="@Model.Gender == " Male">Male</option>
+                                <option selected="@Model.Gender == "Female">Female</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="form_image">Image *</label>
-                            <input id="form_image" type="text" name="image" class="form-control" placeholder="Please specify image's url *" required="required" data-error="Image is required.">
+                                            <input value="@Model.Image" id="form_image" type="text" name="image" class="form-control" placeholder="Please specify image's url *" required="required" data-error="Image is required.">
                         </div>
                     </div>
                 </div>
@@ -181,14 +187,13 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="form_description">Product Description</label>
-                            <textarea id="form_description" name="description" class="form-control" placeholder="Write the details of the product." rows="4" required="required" data-error="Please, leave us a message."></textarea>
+                                            <textarea id="form_description" name="description" class="form-control" placeholder="Write the details of the product." rows="4" required="required" data-error="Please, leave us a message.">@Model.Description</textarea>
                             </div>
                         </div>
 
                     <div class="col-md-12 my-3 bg-blue">
                         
-                        <input type="submit" class="btn btn-success btn-send  pt-2 btn-block
-                            " value="Add Product" >
+                        <input type="submit" class="btn btn-success btn-send  pt-2 btn-block" >
                     
                 </div>
           
