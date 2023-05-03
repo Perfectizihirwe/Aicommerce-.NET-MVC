@@ -1,6 +1,14 @@
+@model NetFullStack.Models.ProductDto;
 @{
     ViewData["Title"] = "Details";
 }
+
+<script>
+    const handleBuy = () => {
+       var checkout = document.getElementById("checkout");
+       checkout.style.display = "block";
+    }
+</script>
 
 <head>
     <style>
@@ -38,22 +46,21 @@
         <div class="order-lg-last col-lg-5 col-sm-8 col-8">
           <div class="d-flex float-end">
             <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Dashboard</p> </a>
-            <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-heart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Wishlist</p> </a>
-            <a href="/cart" class="border rounded py-1 px-3 nav-link d-flex align-items-center"> <i class="fas fa-shopping-cart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My cart</p> </a>
+            @*<a href="/cart" class="border rounded py-1 px-3 nav-link d-flex align-items-center"> <i class="fas fa-shopping-cart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My cart</p> </a>*@
           </div>
         </div>
         <!-- Center elements -->
 
         <!-- Right elements -->
         <div class="col-lg-5 col-md-12 col-12">
-          <div class="input-group float-center">
+         @* <div class="input-group float-center">
             <div class="form-outline">
               <input placeholder="Search" type="search" id="form1" class="form-control" />
             </div>
             <button type="button" class="btn btn-primary shadow-0">
               <i class="fas fa-search"></i>
             </button>
-          </div>
+          </div>*@
         </div>
         <!-- Right elements -->
       </div>
@@ -82,24 +89,7 @@
       <aside class="col-lg-6">
         <div class="border rounded-4 mb-3 d-flex justify-content-center">
           <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp">
-            <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp" />
-          </a>
-        </div>
-        <div class="d-flex justify-content-center mb-3">
-          <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big1.webp" class="item-thumb">
-            <img width="60" height="60" class="rounded-2" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big1.webp" />
-          </a>
-          <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big2.webp" class="item-thumb">
-            <img width="60" height="60" class="rounded-2" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big2.webp" />
-          </a>
-          <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big3.webp" class="item-thumb">
-            <img width="60" height="60" class="rounded-2" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big3.webp" />
-          </a>
-          <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big4.webp" class="item-thumb">
-            <img width="60" height="60" class="rounded-2" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big4.webp" />
-          </a>
-          <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp" class="item-thumb">
-            <img width="60" height="60" class="rounded-2" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp" />
+            <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="@Url.Content(Model.Image)" />
           </a>
         </div>
         <!-- thumbs-wrap.// -->
@@ -108,8 +98,7 @@
       <main class="col-lg-6">
         <div class="ps-lg-3">
           <h4 class="title text-dark">
-            Quality Men's Hoodie for Winter, Men's Fashion <br />
-            Casual Hoodie
+            @Model.Name
           </h4>
           <div class="d-flex flex-row my-3">
             <div class="text-warning mb-1 me-2">
@@ -122,32 +111,20 @@
                 4.5
               </span>
             </div>
-            <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154 orders</span>
-            <span class="text-success ms-2">In stock</span>
           </div>
 
           <div class="mb-3">
-            <span class="h5">$75.00</span>
-            <span class="text-muted">/per box</span>
+            <span class="h5">RWF @Model.Price</span>
+            <span class="text-muted">/per piece</span>
           </div>
 
           <p>
-            Modern look and quality demo item is a streetwear-inspired collection that continues to break away from the conventions of mainstream fashion. Made in Italy, these black and brown clothing low-top shirts for
-            men.
+            @Model.Description
           </p>
 
           <div class="row">
-            <dt class="col-3">Type:</dt>
-            <dd class="col-9">Regular</dd>
-
-            <dt class="col-3">Color</dt>
-            <dd class="col-9">Brown</dd>
-
-            <dt class="col-3">Material</dt>
-            <dd class="col-9">Cotton, Jeans</dd>
-
-            <dt class="col-3">Brand</dt>
-            <dd class="col-9">Reebook</dd>
+            <dt class="col-3">Gender:</dt>
+            <dd class="col-9">@Model.Gender</dd>
           </div>
 
           <hr />
@@ -168,16 +145,15 @@
                 <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon1" data-mdb-ripple-color="dark">
                   <i class="fas fa-minus"></i>
                 </button>
-                <input type="text" class="form-control text-center border border-secondary" placeholder="14" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                <input type="text" class="form-control text-center border border-secondary" value="1" aria-label="Example text with button addon" aria-describedby="button-addon1" />
                 <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon2" data-mdb-ripple-color="dark">
                   <i class="fas fa-plus"></i>
                 </button>
               </div>
             </div>
           </div>
-          <a href="#" class="btn btn-warning shadow-0"> Buy now </a>
-          <a href="#" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
-          <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-heart fa-lg"></i> Save </a>
+          <button onclick="handleBuy()" class="btn btn-warning shadow-0"> Buy now </button>
+          @*<a href="#" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>*@
         </div>
       </main>
     </div>
@@ -185,156 +161,7 @@
 </section>
 <!-- content -->
 
-<section class="bg-light border-top py-4">
-  <div class="container">
-    <div class="row gx-4">
-      <div class="col-lg-8 mb-4">
-        <div class="border rounded-2 px-3 py-2 bg-white">
-          <!-- Pills navs -->
-          <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-            <li class="nav-item d-flex" role="presentation">
-              <a class="nav-link d-flex align-items-center justify-content-center w-100 active" id="ex1-tab-1" data-mdb-toggle="pill" href="#ex1-pills-1" role="tab" aria-controls="ex1-pills-1" aria-selected="true">Specification</a>
-            </li>
-            <li class="nav-item d-flex" role="presentation">
-              <a class="nav-link d-flex align-items-center justify-content-center w-100" id="ex1-tab-2" data-mdb-toggle="pill" href="#ex1-pills-2" role="tab" aria-controls="ex1-pills-2" aria-selected="false">Warranty info</a>
-            </li>
-            <li class="nav-item d-flex" role="presentation">
-              <a class="nav-link d-flex align-items-center justify-content-center w-100" id="ex1-tab-3" data-mdb-toggle="pill" href="#ex1-pills-3" role="tab" aria-controls="ex1-pills-3" aria-selected="false">Shipping info</a>
-            </li>
-            <li class="nav-item d-flex" role="presentation">
-              <a class="nav-link d-flex align-items-center justify-content-center w-100" id="ex1-tab-4" data-mdb-toggle="pill" href="#ex1-pills-4" role="tab" aria-controls="ex1-pills-4" aria-selected="false">Seller profile</a>
-            </li>
-          </ul>
-          <!-- Pills navs -->
 
-          <!-- Pills content -->
-          <div class="tab-content" id="ex1-content">
-            <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
-              <p>
-                With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                pariatur.
-              </p>
-              <div class="row mb-2">
-                <div class="col-12 col-md-6">
-                  <ul class="list-unstyled mb-0">
-                    <li><i class="fas fa-check text-success me-2"></i>Some great feature name here</li>
-                    <li><i class="fas fa-check text-success me-2"></i>Lorem ipsum dolor sit amet, consectetur</li>
-                    <li><i class="fas fa-check text-success me-2"></i>Duis aute irure dolor in reprehenderit</li>
-                    <li><i class="fas fa-check text-success me-2"></i>Optical heart sensor</li>
-                  </ul>
-                </div>
-                <div class="col-12 col-md-6 mb-0">
-                  <ul class="list-unstyled">
-                    <li><i class="fas fa-check text-success me-2"></i>Easy fast and ver good</li>
-                    <li><i class="fas fa-check text-success me-2"></i>Some great feature name here</li>
-                    <li><i class="fas fa-check text-success me-2"></i>Modern style and design</li>
-                  </ul>
-                </div>
-              </div>
-              <table class="table border mt-3 mb-2">
-                <tr>
-                  <th class="py-2">Display:</th>
-                  <td class="py-2">13.3-inch LED-backlit display with IPS</td>
-                </tr>
-                <tr>
-                  <th class="py-2">Processor capacity:</th>
-                  <td class="py-2">2.3GHz dual-core Intel Core i5</td>
-                </tr>
-                <tr>
-                  <th class="py-2">Camera quality:</th>
-                  <td class="py-2">720p FaceTime HD camera</td>
-                </tr>
-                <tr>
-                  <th class="py-2">Memory</th>
-                  <td class="py-2">8 GB RAM or 16 GB RAM</td>
-                </tr>
-                <tr>
-                  <th class="py-2">Graphics</th>
-                  <td class="py-2">Intel Iris Plus Graphics 640</td>
-                </tr>
-              </table>
-            </div>
-            <div class="tab-pane fade mb-2" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-              Tab content or sample information now <br />
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-              officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-              nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            </div>
-            <div class="tab-pane fade mb-2" id="ex1-pills-3" role="tabpanel" aria-labelledby="ex1-tab-3">
-              Another tab content or sample information now <br />
-              Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-              commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum.
-            </div>
-            <div class="tab-pane fade mb-2" id="ex1-pills-4" role="tabpanel" aria-labelledby="ex1-tab-4">
-              Some other tab content or sample information now <br />
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-              officia deserunt mollit anim id est laborum.
-            </div>
-          </div>
-          <!-- Pills content -->
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="px-0 border rounded-2 shadow-0">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Similar items</h5>
-              <div class="d-flex mb-3">
-                <a href="#" class="me-3">
-                  <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/8.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                </a>
-                <div class="info">
-                  <a href="#" class="nav-link mb-1">
-                    Rucksack Backpack Large <br />
-                    Line Mounts
-                  </a>
-                  <strong class="text-dark"> $38.90</strong>
-                </div>
-              </div>
-
-              <div class="d-flex mb-3">
-                <a href="#" class="me-3">
-                  <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/9.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                </a>
-                <div class="info">
-                  <a href="#" class="nav-link mb-1">
-                    Summer New Men's Denim <br />
-                    Jeans Shorts
-                  </a>
-                  <strong class="text-dark"> $29.50</strong>
-                </div>
-              </div>
-
-              <div class="d-flex mb-3">
-                <a href="#" class="me-3">
-                  <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/10.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                </a>
-                <div class="info">
-                  <a href="#" class="nav-link mb-1"> T-shirts with multiple colors, for men and lady </a>
-                  <strong class="text-dark"> $120.00</strong>
-                </div>
-              </div>
-
-              <div class="d-flex">
-                <a href="#" class="me-3">
-                  <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/11.webp" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
-                </a>
-                <div class="info">
-                  <a href="#" class="nav-link mb-1"> Blazer Suit Dress Jacket for Men, Blue color </a>
-                  <strong class="text-dark"> $339.90</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 <!-- Footer -->
 <footer class="text-center text-lg-start text-muted bg-primary mt-3">
   <!-- Section: Links  -->
@@ -472,4 +299,119 @@
 </footer>
 <!-- Footer -->
 
+<div id="checkout" class="p-4 bg-white rounded-1" style="display: none; position: absolute; top: 0; z-index: 2; width: 100%; height: 150vh">
+    <div class="py-5 text-center">
+        <h2>Checkout form</h2>
+    </div>
+    <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-primary">Your cart</span>
+            </h4>
+            <ul class="list-group mb-3">
+                    <img src="@Url.Content(Model.Image)" alt="Image" />
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">@Model.Name</h6>
+                    </div>
+                    <span class="text-muted">RWF @Model.Price</span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">Billing address</h4>
+            <form asp-controller="Home" asp-action="Order">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label for="firstName" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Valid first name is required.
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="lastName" class="form-label">Last name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Valid last name is required.
+                        </div>
+                    </div>
+
+
+                    <div class="col-12">
+                        <label for="phoneNumber" class="form-label">Phone number <span class="text-muted">(Optional)</span></label>
+                        <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="250783309196">
+                        <div class="invalid-feedback">
+                            Please enter a valid phone number for shipping updates.
+                        </div>
+                    </div>
+
+                    <div class="d-none">
+                        <input name="productName" value="@Model.Name" />
+                    </div>
+
+                    <div class="d-none">
+                        <input name="total" value="@Model.Price" />
+                    </div>
+
+                    <div class="d-none">
+                        <input name="productId" value="@Model.Id" />
+                    </div>
+
+                    <div class="col-12">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Gatenga" required>
+                        <div class="invalid-feedback">
+                            Please enter your shipping address.
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+                <h4 class="mb-3">Payment</h4>
+
+                <div class="row gy-3">
+                    <div class="col-md-6">
+                        <label for="cc-name" class="form-label">Name on card</label>
+                        <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                        <small class="text-muted">Full name as displayed on card</small>
+                        <div class="invalid-feedback">
+                            Name on card is required
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="cc-number" class="form-label">Credit card number</label>
+                        <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Credit card number is required
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="cc-expiration" class="form-label">Expiration</label>
+                        <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Expiration date required
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="cc-cvv" class="form-label">CVV</label>
+                        <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Security code required
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <button class="w-100 btn btn-warning btn-lg" type="submit">Confirm Order</button>
+            </form>
+        </div>
+    </div>
+</div>
 

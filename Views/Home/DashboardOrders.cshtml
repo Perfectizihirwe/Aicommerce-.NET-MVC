@@ -1,3 +1,4 @@
+@model IEnumerable<NetFullStack.Models.OrderDto>
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -72,7 +73,7 @@
              />
       </a>
       <!-- Search form -->
-      <form class="d-none d-md-flex input-group w-auto my-auto">
+      @*<form class="d-none d-md-flex input-group w-auto my-auto">
         <input
                autocomplete="off"
                type="search"
@@ -83,7 +84,7 @@
         <span class="input-group-text border-0"
               ><i class="fas fa-search"></i
           ></span>
-      </form>
+      </form>*@
 
       <!-- Right links -->
       <!-- Right links -->
@@ -151,26 +152,30 @@
               <thead>
                 <tr>
                   <th scope="col">Product ID</th>
-                  <th scope="col">Product Image</th>
-                  <th scope="col">Product name</th>
-                  <th scope="col">Gender</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Customer's name</th>
+                  <th scope="col">Address</th>
                   <th scope="col">Quantity</th>
                   <th scope="col">Product Price</th>
                   <th scope="col">Total</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                    <td>1</td>
+                  @foreach(var item in Model)
+                                {
+                                  <tr>
+                    <td>@item.ProductId</td>
                   <td>
-                    <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="img-fluid" alt="Sheep" width="42" height="42">
+                    @item.ProductName
                   </td>
-                  <td>Men's hat</td>
-                  <td>Male</td>
-                  <td>2</td>
-                  <td>$13.68</td>
-                  <td>$27.36</td>
-                </tr>
+                  <td>@item.FirstName</td>
+                  <td>@item.Address</td>
+                  <td>1</td>
+                  <td>@item.Total</td>
+                                        <td>@item.Total</td>
+                </tr>  
+                                }
+                                
               </tbody>
             </table>
           </div>
