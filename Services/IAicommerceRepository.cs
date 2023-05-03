@@ -12,6 +12,10 @@ namespace NetFullStack.Services
 
         void AddProductsAsync(Product product);
 
+        void AddOrderAsync (Order order);
+
+        Task<IEnumerable<Order>> GetOrdersAsync();
+
         Task EditProductAsync(int Id, Product product);
 
         Task DeleteProductAsync(int productId);

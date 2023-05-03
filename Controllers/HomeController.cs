@@ -101,9 +101,10 @@ public class HomeController : Controller
     }
 
     [Route("/dashboard/orders")]
-    public IActionResult DashboardOrders()
+    public async Task<IActionResult> DashboardOrders()
     {
-        return View();
+        var orders = await _repository.GetOrdersAsync();
+        return View(_mapper.Map<IEnumerable<OrderDto>>(orders));
     }
 
     [Route("/dashboard/ai")]
@@ -126,9 +127,19 @@ public class HomeController : Controller
 
     }
 
-    //public IActionResult SearchProducts(IEnumerable<ProductDto> products)
-    //{
-    //}
+    [HttpPost]
+    public async Task<IActionResult> Order(OrderDto order)
+    {
+        var orderEntity = _mapper.Map<Order>(order);
+        _repository.AddOrderAsync(orderEntity);
+        await _repository.SaveChangesAsync();
+        return RedirectToAction("OrderSuccess");
+    }
+
+    [Route("OrderSuccess")]
+    public IActionResult OrderSuccess() { 
+    return View();
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

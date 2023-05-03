@@ -16,6 +16,11 @@ namespace NetFullStack.Services
             return await _aicontext.Products.ToListAsync();
         }
 
+        public async Task<IEnumerable<Order>> GetOrdersAsync()
+        {
+            return await _aicontext.Orders.ToListAsync();
+        }
+
         public async Task<IEnumerable<Product>> SearchProductsAsync(string searchKey)
         {
             var collection = _aicontext.Products as IQueryable<Product>;
@@ -63,6 +68,11 @@ namespace NetFullStack.Services
                 productFromDb.Name = product.Name;
                 productFromDb.Gender = product.Gender;
             }
+        }
+
+        public void AddOrderAsync(Order order)
+        {
+            _aicontext.Orders.Add(order);
         }
 
         public async Task<bool> SaveChangesAsync()
